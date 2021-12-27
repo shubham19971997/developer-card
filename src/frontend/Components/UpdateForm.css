@@ -1,0 +1,60 @@
+.updateForm{
+    height: 265px;
+    width: 680px;
+    background-color: rgb(206, 191, 240);
+    margin-left: 10px;
+    border-radius: 0 0 10px 10px;
+}
+
+.updateForm-content{
+    display: flex;
+    flex-direction: column;
+}
+.updateForm-form{
+    display: flex;
+    flex-direction: column;
+}
+.updateForm-heading{
+    font-size: 18px;
+    margin-left: 10px;
+    color: rgb(71, 71, 71);
+    font-weight: 700;
+}
+
+.updateForm-content-label{
+    font-size: 18px;
+    margin-left: 10px;
+    color: rgb(58, 54, 54);
+    font-weight: 550;
+    margin-top: 5px;
+}
+
+.updateForm-content-input{
+    height: 35px;
+    width: 500px;
+    margin-left: 10px;
+    border-radius: 10px;
+    border: 1px solid rgb(167, 163, 163);
+    outline: none;
+    font-size: 20px;
+    background-color: rgb(243, 234, 234);
+    color: rgb(102, 102, 102);
+    font-weight: 450;
+    padding-left: 5px;
+}
+
+.updateForm-content-input:focus{
+    border: 2px solid rgb(88, 79, 105);
+}
+
+.updateForm-content-button{
+    height: 35px;
+    width: 50px;
+    margin-top: 5px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 8px;
+    background-image: linear-gradient(to right,rgb(70, 67, 67),rgb(81, 25, 146));
+    color: white;
+    font-weight: 600;
+}

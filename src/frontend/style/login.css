@@ -1,0 +1,116 @@
+* {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.login {
+  background-color: rgb(161, 207, 186);
+  height: 100vh;
+  padding-top: 150px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 398px;
+  width: 398px;
+  background-color: white;
+  margin: auto;
+  margin-top: 0px;
+  border-radius: 10px;
+  transition: .5s;
+}
+
+.container:hover{
+  box-shadow: 10px 10px 5px rgb(73, 72, 72);
+  transform: scale(1.02)
+}
+
+.logo {
+  padding-top: 20px;
+  height: 120px;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+.input {
+  width: 200px;
+  height: 30px;
+  background-color: rgb(232, 240, 254);
+  margin: auto;
+  border-radius: 10px;
+  border: 2px solid grey;
+  transition: 0.77s;
+}
+input:focus {
+  outline: none;
+  border: 2px solid rgb(65, 63, 63);
+}
+
+.label {
+  background-color: white;
+  margin-left: 100px;
+  padding: 3px;
+}
+
+.btn {
+  border: 1px solid grey;
+  height: 30px;
+  width: 90px;
+  padding: 5px;
+  margin-left: 96px;
+  margin-top: 9px;
+  border-radius: 7px;
+  background-color: rgb(41, 39, 39);
+  color: white;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.btn:hover {
+  height: 33px;
+  width: 93px;
+}
+
+.user-register {
+  background-color: white;
+  margin: auto;
+  margin-top: 8px;
+}
+span {
+  background-color: white;
+}
+a {
+  background-color: white;
+}
+span:hover {
+  cursor: pointer;
+}
+
+.icon {
+  height: 30;
+  width: 30;
+  background-color: rgb(232, 240, 254);
+  padding-top: 7px;
+  padding-left: 5px;
+  cursor: pointer;
+}
+.inner-input {
+  width: 170px;
+  height: 25px;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  margin-left: 5px;
+  padding: 0;
+}
+.inner-input:focus {
+  outline: none;
+  border: none;
+}

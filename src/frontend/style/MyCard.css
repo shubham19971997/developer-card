@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Smooch&display=swap');
+/* font-family: 'Smooch', cursive; */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&family=Smooch&display=swap');
+/* font-family: 'Roboto Slab', serif;*/
+
+.mycard {
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(0, 0, 0),
+    rgb(73, 72, 72)
+  );
+}
+
+.mycard-body {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  margin-top: 30px;
+}
+
+.mycard-body-main {
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  margin-top: 35px;
+  margin-left: 240px;
+  padding: 15px;
+  height: 500px;
+  width: 700px;
+  border-radius: 10px;
+}
+
+.mycard-body{
+  margin-left: 250px;
+}

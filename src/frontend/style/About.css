@@ -1,0 +1,19 @@
+.about {
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(0, 0, 0),
+    rgb(73, 72, 72)
+  );
+  height: 100vh;
+}
+
+.about-main {
+  background-color: whitesmoke;
+  height: 500px;
+  margin: auto;
+  width: 800px;
+  margin-top: 60px;
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px;
+}

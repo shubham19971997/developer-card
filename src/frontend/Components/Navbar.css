@@ -1,0 +1,26 @@
+.navbar {
+  background-color: whitesmoke;
+  height: 35px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  justify-content: space-around;
+  padding-left: 14px;
+  position: fixed;
+  top: 0;
+  z-index: 10000;
+}
+
+.icon {
+  color: rgb(33, 4, 87);
+  background-color: whitesmoke;
+}
+.nav_blue{
+  display: none;
+  transition-timing-function: ease-out;
+  transition: .5s;
+}
+.img-profile{
+  border-radius: 50%;
+}

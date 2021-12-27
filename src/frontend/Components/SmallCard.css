@@ -1,0 +1,47 @@
+.smallCard {
+  height: 80px;
+  width: 200px;
+  /* background-color: rgb(124, 77, 185); */
+  background-image: linear-gradient(to right, rgb(43, 43, 43), rgb(49, 8, 102));
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  border-radius: 10px;
+  transition: .3s;
+}
+.smallCard:hover{
+    transform: scale(1.02)
+}
+
+
+.smallCard-img {
+  height: 50px;
+  width: 50px;
+  margin-top: 15px;
+  margin-bottom: auto;
+  margin-left: 10px;
+  border-radius: 50%;
+}
+
+.smallCard-container{
+  display: flex;
+  flex-direction: row;
+}
+
+.smallCard-content{
+    margin-top: 20px;
+    margin-left: 10px;
+    
+}
+
+.smallCard-content-name{
+    font-size: 15px;
+    color: rgb(214, 189, 245);
+    font-weight: 700;
+}
+
+.smallCard-content-likes{
+    font-size: 10px;
+    font-weight: 500;
+    color: rgb(155, 150, 145);
+}
