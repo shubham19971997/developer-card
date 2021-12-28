@@ -2,13 +2,17 @@ import React, { useState } from 'react'
 import './Comments.css'
 import { AiOutlineSend } from 'react-icons/ai'
 import { useSelector } from 'react-redux'
-import logo from '../dc.png'
 import './Comments.css'
 import axios from 'axios'
+import CommentCard from './CommentCard'
 
 function Comments(props) {
   const User = useSelector((state) => state.myCard)
-  const cardId = props.cardId
+  const cardId = props.commentData.cardId
+  const comments = props.commentData.comments
+  const renderComment = comments.map((comment) => {
+    return <CommentCard commentData={comment} />
+  }).reverse();
   const [commentText, setCommentText] = useState('')
   const send = () => {
     const commentData = {
@@ -18,9 +22,11 @@ function Comments(props) {
       userName: User.name,
       commentText,
     }
-    axios.post('http://localhost:9000/card/comment',commentData).then((res)=>{
-      console.log(res.data);
-    })
+    axios
+      .post('http://localhost:9000/card/comment', commentData)
+      .then((res) => {
+        console.log(res.data)
+      })
   }
   return (
     <div className='comments'>
@@ -35,20 +41,7 @@ function Comments(props) {
           <AiOutlineSend size={30} onClick={send} />
         </div>
       </div>
-      <div className='comment'>
-        <div className='comment-card'>
-          <div className='comment-header'>
-            <img src={logo} />
-            <div>
-              <p className='comment-name'>RandomGuyOnYT</p>
-              <p className='comment-date'>21/12/2021</p>
-            </div>
-          </div>
-          <div className='comment-content'>
-            <p>Learn mern stack for full stack development!</p>
-          </div>
-        </div>
-      </div>
+      {renderComment}
     </div>
   )
 }

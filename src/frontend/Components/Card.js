@@ -3,18 +3,23 @@ import './MainBody.css'
 import { useSelector } from 'react-redux'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 import { HiAnnotation } from 'react-icons/hi'
-import Comments from './Comments'
+import Comments from './Comment'
 import axios from 'axios'
 
 function Card({
-  card: { name, email, skills, imagepath, aboutMe, _id, likes }
+  card: { name, email, skills, imagepath, aboutMe, _id, likes, comments }
 }) {
-  const [comments, setComments] = useState(false)
+  const [comment, setComment] = useState(false)
   const [like, setLike] = useState()
   const User = useSelector((state) => state.myCard)
   const [totalLikes, setTotalLikes] = useState(likes.length)
 
   const cardId = _id;
+
+  const commentData = {
+    cardId,
+    comments
+  }
 
   const likee = () => {
     if (likes.includes(User._id)) {
@@ -84,7 +89,7 @@ function Card({
           <div>
             <HiAnnotation
               className='comm'
-              onClick={() => setComments(!comments)}
+              onClick={() => setComment(!comment)}
               size={30}
             />
           </div>
@@ -92,7 +97,7 @@ function Card({
           <div></div>
         </div>
       </div>
-      <div>{comments ? <Comments cardId={cardId} /> : ''}</div>
+      <div>{comment ? <Comments commentData={commentData} /> : ''}</div>
     </div>
   )
 }

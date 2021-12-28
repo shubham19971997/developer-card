@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 import Card from './Components/Card'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 import { HiAnnotation } from 'react-icons/hi'
-import Comments from '../frontend/Components/Comments'
+import Comments from '../frontend/Components/Comment'
 import { MdUpdate } from 'react-icons/md'
 import UpdateForm from './Components/UpdateForm'
 

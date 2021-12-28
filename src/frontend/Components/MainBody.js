@@ -9,7 +9,7 @@ function MainBody() {
   const renderCards = cards.map((card) => {
     const { _id } = card
     if (myCard._id !== _id) return <Card card={card} />
-  })
+  });
   return <div>{renderCards}</div>
 }
 
