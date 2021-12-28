@@ -7,22 +7,23 @@ import Comments from './Comments'
 import axios from 'axios'
 
 function Card({
-  card: { name, email, skills, imagepath, aboutMe, _id, likes },
+  card: { name, email, skills, imagepath, aboutMe, _id, likes }
 }) {
   const [comments, setComments] = useState(false)
   const [like, setLike] = useState()
   const User = useSelector((state) => state.myCard)
   const [totalLikes, setTotalLikes] = useState(likes.length)
 
+  const cardId = _id;
+
   const likee = () => {
     if (likes.includes(User._id)) {
-      return setLike(true)
+      return
     } else {
       const putData = {
         cardId: _id,
         userId: User._id,
       }
-
       axios.put('http://localhost:9000/card/like', putData).then((res) => {
         setTotalLikes(res.data.likes.length)
         setLike(true)
@@ -72,15 +73,13 @@ function Card({
           </div>
         </div>
         <div className='interactor'>
-        <div className="interactor-totalLikes" >{totalLikes}</div>
-          <div className="interactor-likes">
-          
+          <div className='interactor-totalLikes'>{totalLikes}</div>
+          <div className='interactor-likes'>
             {like ? (
               <AiFillStar className='like' size={30} onClick={notLikee} />
             ) : (
               <AiOutlineStar className='like' size={30} onClick={likee} />
             )}
-            
           </div>
           <div>
             <HiAnnotation
@@ -93,7 +92,7 @@ function Card({
           <div></div>
         </div>
       </div>
-      <div>{comments ? <Comments /> : ''}</div>
+      <div>{comments ? <Comments cardId={cardId} /> : ''}</div>
     </div>
   )
 }

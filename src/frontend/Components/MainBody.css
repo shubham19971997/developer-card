@@ -90,7 +90,7 @@
 }
 .like {
   color: rgb(218, 165, 32);
-  margin-right: 10px;
+  margin-right: 7px;
 }
 .comm {
   color: white;
@@ -105,7 +105,7 @@
 }
 
 .interactor-totalLikes {
-  margin-right: 30px;
+  margin-right: 35px;
   margin-top: 7px;
   font-weight: 600;
   font-size: 17px;

@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt')
 const cloudinary = require('cloudinary').v2
 const jwt = require('jsonwebtoken')
 
-
 cloudinary.config({
   cloud_name: 'daxavsasf',
   api_key: '191438778524724',
@@ -90,8 +89,7 @@ router.post('/login', async (req, res) => {
   }
 })
 
-router.put('/like', async(req, res) => {
-
+router.put('/like', async (req, res) => {
   // const cardHolder=  await Card.findOne({_id: req.body.cardId});
   // res.json(cardHolder.likes);
 
@@ -102,13 +100,14 @@ router.put('/like', async(req, res) => {
     },
     {
       new: true,
-    }).exec((err,result) => {
-      if(err){
-        return res.status(422).json({error:err})
-      }else{
-        res.json(result)
-      }
-    })
+    }
+  ).exec((err, result) => {
+    if (err) {
+      return res.status(422).json({ error: err })
+    } else {
+      res.json(result)
+    }
+  })
 })
 
 router.put('/unlike', (req, res) => {
@@ -119,13 +118,38 @@ router.put('/unlike', (req, res) => {
     },
     {
       new: true,
-    }).exec((err,result) => {
-      if(err){
-        return res.status(422).json({error:err})
-      }else{
-        res.json(result)
-      }
-    })
+    }
+  ).exec((err, result) => {
+    if (err) {
+      return res.status(422).json({ error: err })
+    } else {
+      res.json(result)
+    }
+  })
+})
+
+router.post('/comment', async (req, res) => {
+  const comment = {
+    _id: req.body.userId,
+    userName: req.body.userName,
+    userImage: req.body.userImage,
+    text: req.body.commentText,
+  }
+  Card.findByIdAndUpdate(
+    req.body.cardId,
+    {
+      $push: { comments: comment },
+    },
+    {
+      new: true,
+    }
+  ).exec((err, result) => {
+    if (err) {
+      return res.status(422).json({ error: err })
+    } else {
+      res.json(result)
+    }
+  })
 })
 
 module.exports = router
