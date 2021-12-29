@@ -9,23 +9,33 @@ import CommentCard from './CommentCard'
 function Comments(props) {
   const User = useSelector((state) => state.myCard)
   const cardId = props.commentData.cardId
-  const comments = props.commentData.comments
-  const renderComment = comments.map((comment) => {
-    return <CommentCard commentData={comment} />
-  }).reverse();
+  const [comments, setComments] = useState(props.commentData.comments)
+  const renderComment = comments
+    .map((comment) => {
+      return <CommentCard commentData={comment} />
+    })
+    .reverse()
   const [commentText, setCommentText] = useState('')
   const send = () => {
     const commentData = {
       cardId,
-      userId: User._id,
       userImage: User.imagepath,
       userName: User.name,
-      commentText,
+      text: commentText,
     }
     axios
       .post('http://localhost:9000/card/comment', commentData)
       .then((res) => {
         console.log(res.data)
+        if (res.data.status === 'OK') {
+          console.log(comments)
+          setComments((prev) => [
+            ...prev,
+            { ...commentData, _id: res.data._id },
+          ])
+
+          setCommentText('')
+        }
       })
   }
   return (

@@ -4,6 +4,7 @@ const router = express.Router()
 const bcrypt = require('bcrypt')
 const cloudinary = require('cloudinary').v2
 const jwt = require('jsonwebtoken')
+const uuid = require('uuid').v4
 
 cloudinary.config({
   cloud_name: 'daxavsasf',
@@ -130,10 +131,10 @@ router.put('/unlike', (req, res) => {
 
 router.post('/comment', async (req, res) => {
   const comment = {
-    _id: req.body.userId,
+    _id: uuid(),
     userName: req.body.userName,
     userImage: req.body.userImage,
-    text: req.body.commentText,
+    text: req.body.text,
   }
   Card.findByIdAndUpdate(
     req.body.cardId,
@@ -147,7 +148,7 @@ router.post('/comment', async (req, res) => {
     if (err) {
       return res.status(422).json({ error: err })
     } else {
-      res.json(result)
+      res.status(200).send({status:'OK',id: comment._id})
     }
   })
 })

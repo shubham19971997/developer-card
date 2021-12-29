@@ -7,33 +7,47 @@ import Comments from './Comment'
 import axios from 'axios'
 
 function Card({
-  card: { name, email, skills, imagepath, aboutMe, _id, likes, comments }
+  card: {
+    name,
+    email,
+    skills,
+    imagepath,
+    aboutMe,
+    _id,
+    likes: initialLikes,
+    comments,
+  },
 }) {
   const [comment, setComment] = useState(false)
   const [like, setLike] = useState()
   const User = useSelector((state) => state.myCard)
-  const [totalLikes, setTotalLikes] = useState(likes.length)
+  // const [totalLikes, setTotalLikes] = useState(likes.length)
+  const [likes, setLikes] = useState(initialLikes)
 
-  const cardId = _id;
+  const cardId = _id
 
   const commentData = {
     cardId,
-    comments
+    comments,
   }
 
+  // console.log(initialLikes)
+  console.log(likes)
+  console.log("inti",initialLikes)
+
   const likee = () => {
-    if (likes.includes(User._id)) {
-      return
-    } else {
       const putData = {
         cardId: _id,
         userId: User._id,
       }
       axios.put('http://localhost:9000/card/like', putData).then((res) => {
-        setTotalLikes(res.data.likes.length)
-        setLike(true)
+        // setTotalLikes(res.data.likes.length)
+        if (!likes.includes(User._id)) {
+          setLikes((prev) => [...prev, User._id])
+          setLike(true)
+        }
       })
-    }
+    
   }
 
   const notLikee = () => {
@@ -42,16 +56,23 @@ function Card({
       userId: User._id,
     }
     axios.put('http://localhost:9000/card/unlike', putData).then((res) => {
-      setTotalLikes(res.data.likes.length)
-      setLike(false)
+      // setTotalLikes(res.data.likes.length)
+      console.log("dislike",likes)
+      if (likes.includes(User._id)) {
+        const tempLikes = [...likes]
+        const index = tempLikes.findIndex((like)=>like===User._id)
+        tempLikes.splice(index,1)
+        setLikes(tempLikes)
+        setLike(false)
+      }
     })
   }
 
-  useEffect(() => {
-    if (likes.includes(User._id)) {
-      setLike(true)
-    }
-  })
+  // useEffect(() => {
+  //   if (likes.includes(User._id)) {
+  //     setLike(true)
+  //   }
+  // },[])
 
   return (
     <div className='mb' key={_id}>
@@ -78,9 +99,9 @@ function Card({
           </div>
         </div>
         <div className='interactor'>
-          <div className='interactor-totalLikes'>{totalLikes}</div>
+          <div className='interactor-totalLikes'>{likes.length}</div>
           <div className='interactor-likes'>
-            {like ? (
+            {like || likes.includes(User._id) ? (
               <AiFillStar className='like' size={30} onClick={notLikee} />
             ) : (
               <AiOutlineStar className='like' size={30} onClick={likee} />
