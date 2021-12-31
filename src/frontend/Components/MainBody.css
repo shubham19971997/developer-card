@@ -102,6 +102,7 @@
   flex-direction: row;
   margin: 0;
   position: relative;
+  cursor: pointer;
 }
 
 .interactor-totalLikes {

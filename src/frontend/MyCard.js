@@ -13,9 +13,15 @@ import UpdateForm from './Components/UpdateForm'
 function MyCard() {
   const [update, setUpdate] = useState(false)
   const [like, setLike] = useState(false)
-  const [comments, setComments] = useState(false)
+  const [comment, setComment] = useState(false)
   const card = useSelector((state) => state.myCard)
-  const { name, email, skills, aboutMe, imagepath, _id } = card
+  const { name, email, skills, aboutMe, imagepath, _id, comments } = card
+
+  const commentData = {
+    cardId: _id,
+    comments,
+  }
+
   return (
     <div className='mycard'>
       <Navbar />
@@ -64,7 +70,7 @@ function MyCard() {
                   className='comm'
                   onClick={() => {
                     setUpdate(false)
-                    setComments(!comments)
+                    setComment(!comment)
                   }}
                   size={30}
                 />
@@ -74,7 +80,7 @@ function MyCard() {
                   className='comm'
                   size={30}
                   onClick={() => {
-                    setComments(false)
+                    setComment(false)
                     setUpdate(!update)
                   }}
                 />
@@ -82,7 +88,7 @@ function MyCard() {
               <div></div>
             </div>
           </div>
-          <div>{comments ? <Comments /> : ''}</div>
+          <div>{comment ? <Comments commentData={commentData} /> : ''}</div>
           <div>{update ? <UpdateForm /> : ''}</div>
         </div>
         <RightBody className='mycard-body-main-rb' />

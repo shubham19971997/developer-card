@@ -91,8 +91,12 @@ router.post('/login', async (req, res) => {
 })
 
 router.put('/like', async (req, res) => {
-  // const cardHolder=  await Card.findOne({_id: req.body.cardId});
-  // res.json(cardHolder.likes);
+  const cardHolder = await Card.findOne({ _id: req.body.cardId })
+  if (cardHolder.likes.includes(req.body.userId)) {
+    return res
+      .status(401)
+      .json({ error: `${req.body.userId} has already liked` })
+  }
 
   Card.findByIdAndUpdate(
     req.body.cardId,
@@ -148,7 +152,25 @@ router.post('/comment', async (req, res) => {
     if (err) {
       return res.status(422).json({ error: err })
     } else {
-      res.status(200).send({status:'OK',id: comment._id})
+      res.status(200).send({ status: 'OK', id: comment._id })
+    }
+  })
+})
+
+router.put('/deleteComment', (req, res) => {
+  Card.findByIdAndUpdate(
+    req.body.cardId,
+    {
+      $pull: { comments: { _id: req.body.commentId } },
+    },
+    {
+      new: true,
+    }
+  ).exec((err, result) => {
+    if (err) {
+      return res.status(422).json({ error: err })
+    } else {
+      res.json(result)
     }
   })
 })

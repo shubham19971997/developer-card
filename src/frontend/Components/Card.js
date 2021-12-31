@@ -19,7 +19,7 @@ function Card({
   },
 }) {
   const [comment, setComment] = useState(false)
-  const [like, setLike] = useState()
+  const [like, setLike] = useState(false)
   const User = useSelector((state) => state.myCard)
   // const [totalLikes, setTotalLikes] = useState(likes.length)
   const [likes, setLikes] = useState(initialLikes)
@@ -31,23 +31,20 @@ function Card({
     comments,
   }
 
-  // console.log(initialLikes)
-  console.log(likes)
-  console.log("inti",initialLikes)
-
-  const likee = () => {
-      const putData = {
-        cardId: _id,
-        userId: User._id,
+  const likee = async () => {
+    const putData = {
+      cardId: _id,
+      userId: User._id,
+    }
+    try {
+      const res = await axios.put('http://localhost:9000/card/like', putData)
+      if (res.data) {
+        setLikes((prev) => [...prev, User._id])
+        setLike(true)
       }
-      axios.put('http://localhost:9000/card/like', putData).then((res) => {
-        // setTotalLikes(res.data.likes.length)
-        if (!likes.includes(User._id)) {
-          setLikes((prev) => [...prev, User._id])
-          setLike(true)
-        }
-      })
-    
+    } catch (error) {
+      alert('Post already liked')
+    }
   }
 
   const notLikee = () => {
@@ -57,14 +54,11 @@ function Card({
     }
     axios.put('http://localhost:9000/card/unlike', putData).then((res) => {
       // setTotalLikes(res.data.likes.length)
-      console.log("dislike",likes)
-      if (likes.includes(User._id)) {
-        const tempLikes = [...likes]
-        const index = tempLikes.findIndex((like)=>like===User._id)
-        tempLikes.splice(index,1)
-        setLikes(tempLikes)
-        setLike(false)
-      }
+      const tempLikes = [...likes]
+      const index = tempLikes.findIndex((like) => like === User._id)
+      tempLikes.splice(index, 1)
+      setLikes(tempLikes)
+      setLike(false)
     })
   }
 
@@ -77,7 +71,7 @@ function Card({
   return (
     <div className='mb' key={_id}>
       <div className='card'>
-        <div class='div-1'>
+        <div className='div-1'>
           <img className='img-1' alt='logo' src={imagepath} />
           <div className='Name_Post'>
             <p className='name'>{name}</p>
@@ -102,9 +96,21 @@ function Card({
           <div className='interactor-totalLikes'>{likes.length}</div>
           <div className='interactor-likes'>
             {like || likes.includes(User._id) ? (
-              <AiFillStar className='like' size={30} onClick={notLikee} />
+              <AiFillStar
+                className='like'
+                size={30}
+                onClick={() => {
+                  notLikee()
+                }}
+              />
             ) : (
-              <AiOutlineStar className='like' size={30} onClick={likee} />
+              <AiOutlineStar
+                className='like'
+                size={30}
+                onClick={() => {
+                  likee()
+                }}
+              />
             )}
           </div>
           <div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Comments.css'
 import { AiOutlineSend } from 'react-icons/ai'
 import { useSelector } from 'react-redux'
@@ -10,12 +10,20 @@ function Comments(props) {
   const User = useSelector((state) => state.myCard)
   const cardId = props.commentData.cardId
   const [comments, setComments] = useState(props.commentData.comments)
+  let [checker, setChecker] = useState(2)
+  const [moreComments, setMoreComments] = useState(false)
+  const [commentText, setCommentText] = useState('')
+  let index = 0
   const renderComment = comments
     .map((comment) => {
-      return <CommentCard commentData={comment} />
+      if (index < checker) {
+        index++
+        return <CommentCard commentData={{comment,cardId}} key={comment._id} />
+      } else {
+        return ''
+      }
     })
     .reverse()
-  const [commentText, setCommentText] = useState('')
   const send = () => {
     const commentData = {
       cardId,
@@ -50,6 +58,21 @@ function Comments(props) {
         <div className='send-logo'>
           <AiOutlineSend size={30} onClick={send} />
         </div>
+      </div>
+      <div className='comment-numbers'>
+        <button className='comment-numbers-button'
+          onClick={() => {
+            if (checker === comments.length) {
+              setChecker(2)
+            } else {
+              setChecker(comments.length)
+            }
+
+            setMoreComments(!moreComments)
+          }}
+        >
+          {moreComments ? 'show less comments' : 'show more comments'}
+        </button>
       </div>
       {renderComment}
     </div>

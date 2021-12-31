@@ -1,14 +1,15 @@
-import React from 'react';
-import './RightBody.css';
-import { useSelector } from 'react-redux';
-import SmallCard from './SmallCard';
-import {Link} from 'react-router-dom';
+import React from 'react'
+import './RightBody.css'
+import { useSelector } from 'react-redux'
+import SmallCard from './SmallCard'
+import { Link } from 'react-router-dom'
 
 function RightBody() {
   const cards = useSelector((state) => state.allCards.cards)
+  const { _id } = cards
   const renderSmallCards = cards.map((card) => {
     const { name, email, skills, imagepath, aboutMe, _id } = card
-    return <SmallCard card={card}/>
+    return <SmallCard card={card} key={_id} />
   })
   return (
     <div className='rb'>

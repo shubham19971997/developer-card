@@ -8,7 +8,7 @@ function MainBody() {
   const myCard = useSelector((state) => state.myCard)
   const renderCards = cards.map((card) => {
     const { _id } = card
-    if (myCard._id !== _id) return <Card card={card} />
+    if (myCard._id !== _id) return <Card card={card} key={_id} />
   });
   return <div>{renderCards}</div>
 }
