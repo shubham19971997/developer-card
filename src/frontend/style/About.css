@@ -1,3 +1,4 @@
+
 .about {
   background-image: linear-gradient(
     to bottom right,
@@ -5,15 +6,124 @@
     rgb(73, 72, 72)
   );
   height: 100vh;
+  margin-top: 0px;
+  padding-top: 30px;
 }
 
 .about-main {
   background-color: whitesmoke;
   height: 500px;
-  margin: auto;
   width: 800px;
-  margin-top: 60px;
+  margin-top: 120px;
   border-radius: 10px;
   text-align: center;
   padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
 }
+
+.right-part-img {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 20px;
+}
+
+.top-img {
+  height: 150px;
+  width: 300px;
+}
+
+.top-img {
+  -webkit-animation: mover 3.5s infinite alternate;
+  animation: mover-top 3.5s infinite alternate;
+}
+@-webkit-keyframes mover-top {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.13);
+  }
+}
+@keyframes mover-top {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.13);
+  }
+}
+
+.lower-img {
+  height: 300px;
+  margin-top: -90px;
+}
+.lower-img {
+  -webkit-animation: mover 3.5s infinite alternate;
+  animation: mover 3.5s infinite alternate;
+}
+@-webkit-keyframes mover {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-15px);
+  }
+}
+@keyframes mover {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-15px);
+  }
+}
+
+.left-part-content {
+  margin-top: 80px;
+  margin-bottom: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: left;
+}
+
+.left-part-content-name{
+  margin-bottom: 10px;
+  margin-left: 10px;
+  font-weight: 600;
+  color: rgb(27, 27, 27);
+}
+
+.left-part-content-description{
+  margin-left: 10px;
+  color: rgb(80, 79, 79);
+}
+
+.left-part-content-heading{
+  margin-top: 30px;
+  margin-left: 10px;
+  color: rgb(80, 75, 75);
+  font-size: 15px;
+}
+
+.left-part-content-heading-skills{
+  margin-left: 10px;
+  margin-top: 30px;
+  color: rgb(80, 75, 75);
+  font-size: 15px;
+}
+
+.socialMedia-logo{
+  margin-top: 20px;
+  margin-left: 10px;
+  /* background-image: linear-gradient(to bottom, rgb(24, 20, 20),rgrgb(43, 15, 15)); */
+  color: rgb(4, 51, 51);
+  transition: .3s ease-in-out;
+}
+.socialMedia-logo:hover{
+  transform: scale(1.1)
+}
+
