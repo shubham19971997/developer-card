@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './style/signup.css'
 import logo from './dc.png'
-import { FaEye } from 'react-icons/fa'
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import axios from 'axios'
 import login from './login'
 import { Link } from 'react-router-dom'
@@ -14,6 +14,7 @@ function Signup() {
   const [skills, setSkills] = useState('')
   const [aboutMe, setAboutMe] = useState('')
   const [selectFile, setSelectFile] = useState('')
+  const [submitButton, setSubmitButton] = useState(false)
 
   const uploadImage = (files) => {
     const formData = new FormData()
@@ -22,7 +23,8 @@ function Signup() {
     axios
       .post('https://api.cloudinary.com/v1_1/daxavsasf/image/upload', formData)
       .then((res) => {
-        setSelectFile(res.data.secure_url);
+        setSelectFile(res.data.secure_url)
+        setSubmitButton(true)
       })
   }
 
@@ -40,8 +42,6 @@ function Signup() {
       console.log(res.data)
     })
   }
-
-
 
   return (
     <div className='signup'>
@@ -72,7 +72,11 @@ function Signup() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <FaEye className='icon' onClick={() => setToggle(!toggle)} />
+            {toggle ? (
+              <FaEye className='icon' onClick={() => setToggle(!toggle)} />
+            ) : (
+              <FaEyeSlash className='icon' onClick={() => setToggle(!toggle)}/>
+            )}
           </div>
           <label className='label-signup'>Skills</label>
           <input
@@ -98,9 +102,15 @@ function Signup() {
             onChange={(e) => uploadImage(e.target.files)}
           />
           <div>
-            <button className='btn-signup' type='submit'>
-              Signup
-            </button>
+            {submitButton ? (
+              <button className='btn-signup' type='submit'>
+                SignUp
+              </button>
+            ) : (
+              <button className='btn-signup-disabled' disabled>
+                SignUp
+              </button>
+            )}
             <Link to='login'>
               <a className='login-route'>Already a User</a>
             </Link>

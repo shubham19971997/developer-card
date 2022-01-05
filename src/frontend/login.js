@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import logo from './dc.png'
 import './style/login.css'
 import { Link, Redirect } from 'react-router-dom'
-import { FaEye } from 'react-icons/fa'
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
 import { setAllCards, setMyCard } from '../redux/actions/cardActions'
@@ -36,9 +36,11 @@ function Login() {
 
   const FetchCards = async () => {
     const response = await axios
-      .get('http://localhost:9000/card/',{headers:{
-        'token': token,
-      }})
+      .get('http://localhost:9000/card/', {
+        headers: {
+          token: token,
+        },
+      })
       .catch((err) => {
         console.log(err)
       })
@@ -49,11 +51,11 @@ function Login() {
     dispatch(setMyCard(data))
   }, [data])
 
-  useEffect(()=>{
-    if(loggedIn){
-      FetchCards();
+  useEffect(() => {
+    if (loggedIn) {
+      FetchCards()
     }
-  },[loggedIn])
+  }, [loggedIn])
 
   console.log(cards)
   localStorage.setItem('token', token)
@@ -81,7 +83,11 @@ function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <FaEye className='icon' onClick={() => setToggle(!toggle)} />
+            {toggle ? (
+              <FaEye className='icon' onClick={() => setToggle(!toggle)} />
+            ) : (
+              <FaEyeSlash className='icon' onClick={() => setToggle(!toggle)} />
+            )}
           </div>
 
           <button className='btn' type='submit'>

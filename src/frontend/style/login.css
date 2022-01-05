@@ -63,19 +63,19 @@ input:focus {
 .btn {
   border: 1px solid grey;
   height: 30px;
-  width: 90px;
+  width: 70px;
+  font-weight: 550;
   padding: 5px;
   margin-left: 96px;
   margin-top: 9px;
   border-radius: 7px;
   background-color: rgb(41, 39, 39);
   color: white;
-  transition: 0.5s;
+  transition: 0.5s ease;
   cursor: pointer;
 }
 .btn:hover {
-  height: 33px;
-  width: 93px;
+  transform: scale(1.05);
 }
 
 .user-register {
