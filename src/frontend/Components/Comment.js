@@ -11,63 +11,62 @@ function Comments(props) {
   const cardId = props.commentData.cardId
   const [comments, setComments] = useState(props.commentData.comments)
   let [checker, setChecker] = useState(2)
-  const [db, setDB] = useState(true)
+  // const [db, setDB] = useState(true)
   const [moreComments, setMoreComments] = useState(false)
   const [commentText, setCommentText] = useState('')
   let index = 0
-  console.log(User._id);
+  console.log(User._id)
   console.log(cardId)
-  const renderComment = comments
-    .map((comment) => {
-      if (index < checker) {
-        index++
-        // if (comment.name === User.name) {
-        //   setDB(true)
-        // } else {
-        //   setDB(false)
-        // }
-        // return <CommentCard commentData={{comment,cardId}} key={comment._id} /> used it for separate component
-        const deleteComment = () => {
-          const deleteData = {
-            cardId,
-            commentId: comment._id,
-          }
-          axios
-            .put('http://localhost:9000/card/deleteComment', deleteData)
-            .then((res) => {
-              setComments(res.data.comments)
-            })
+  const renderComment = comments.map((comment) => {
+    if (index < checker) {
+      index++
+      // if (comment.name === User.name) {
+      //   setDB(true)
+      // } else {
+      //   setDB(false)
+      // }
+      // return <CommentCard commentData={{comment,cardId}} key={comment._id} /> used it for separate component
+      const deleteComment = () => {
+        const deleteData = {
+          cardId,
+          commentId: comment._id,
         }
-        return (
-          <div className='comment' key={comment._id}>
-            <div className='comment-card'>
-              <div className='comment-header'>
-                <img src={comment.userImage} />
-                <div>
-                  <p className='comment-name'>{comment.userName}</p>
-                  <p className='comment-date'>28/12/21</p>
-                  {db ? (
-                    <MdDelete
-                      onClick={deleteComment}
-                      className='comment-content-delete'
-                      size={25}
-                    />
-                  ) : (
-                    ''
-                  )}
-                </div>
-              </div>
-              <div className='comment-content'>
-                <p>{comment.text}</p>
+        axios
+          .put('http://localhost:9000/card/deleteComment', deleteData)
+          .then((res) => {
+            setComments(res.data.comments)
+          })
+      }
+      return (
+        <div className='comment' key={comment._id}>
+          <div className='comment-card'>
+            <div className='comment-header'>
+              <img src={comment.userImage} />
+              <div>
+                <p className='comment-name'>{comment.userName}</p>
+                <p className='comment-date'>28/12/21</p>
               </div>
             </div>
+            <div className='comment-content'>
+              <p className='comment-content-text'>{comment.text}</p>
+              {comment.userName === User.name ? (
+                <MdDelete
+                  onClick={deleteComment}
+                  className='comment-content-delete'
+                  size={25}
+                />
+              ) : (
+                ''
+              )}
+            </div>
           </div>
-        )
-      } else {
-        return ''
-      }
-    })
-    .reverse()
+        </div>
+      )
+    } else {
+      return ''
+    }
+  })
+
   const send = () => {
     const commentData = {
       cardId,
@@ -79,15 +78,14 @@ function Comments(props) {
       .post('http://localhost:9000/card/comment', commentData)
       .then((res) => {
         if (res.data.status === 'OK') {
-          setComments((prev) => [
-            ...prev,
-            { ...commentData, _id: res.data._id },
-          ])
-
+          const temp = [...comments]
+          temp.unshift({ ...commentData, _id: res.data._id })
+          setComments(temp)
           setCommentText('')
         }
       })
   }
+
   return (
     <div className='comments'>
       <div className='comment-input'>
