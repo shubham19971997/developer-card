@@ -71,7 +71,7 @@ router.post('/signup', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   let user = await Card.findOne({ email: req.body.email })
-  if (!user) return res.send('User is not registered')
+  if (!user) return res.status(400).send({message:'User is not registered'})
 
   try {
     if (await bcrypt.compare(req.body.password, user.password)) {
@@ -83,7 +83,7 @@ router.post('/login', async (req, res) => {
       )
       res.send({ user: user, token: token })
     } else {
-      res.send('Check your password once')
+      res.status(400).send({message:'Check Your Password Once'})
     }
   } catch {
     res.status(500).send()

@@ -14,6 +14,7 @@ function Login() {
   const [loggedIn, setLoggedIn] = useState(false)
   const [data, setData] = useState()
   const [token, setToken] = useState('')
+  const [err, setErr] = useState('')
 
   function submit(e) {
     e.preventDefault()
@@ -22,29 +23,38 @@ function Login() {
       password,
     }
 
-    axios.post('http://localhost:9000/card/login', postData).then((res) => {
-      if (res) {
-        setToken(res.data.token)
-        setData(res.data.user)
-        setLoggedIn(true)
-      }
-    })
+    axios
+      .post('http://localhost:9000/card/login', postData)
+      .then((res) => {
+        if (res.statusText === 'OK') {
+          setToken(res.data.token)
+          setData(res.data.user)
+          setLoggedIn(true)
+          console.log(res)
+        }
+      })
+      .catch((err) => {
+        setErr('Check Your Email or Password Once')
+      })
   }
 
   const cards = useSelector((state) => state)
   const dispatch = useDispatch()
 
   const FetchCards = async () => {
-    const response = await axios
-      .get('http://localhost:9000/card/', {
-        headers: {
-          token: token,
-        },
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-    dispatch(setAllCards(response.data))
+    if (loggedIn) {
+      console.log(loggedIn)
+      const response = await axios
+        .get('http://localhost:9000/card/', {
+          headers: {
+            token: token,
+          },
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+      dispatch(setAllCards(response.data))
+    }
   }
 
   useEffect(() => {
@@ -57,7 +67,6 @@ function Login() {
     }
   }, [loggedIn])
 
-  console.log(cards)
   localStorage.setItem('token', token)
 
   return (
@@ -70,7 +79,10 @@ function Login() {
             name='email'
             className='input'
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value)
+              setErr('')
+            }}
             placeholder='Enter your email'
           />
           <label className='label'>Password</label>
@@ -81,7 +93,10 @@ function Login() {
               placeholder='Enter your password'
               type={toggle ? 'text' : 'password'}
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value)
+                setErr('')
+              }}
             />
             {toggle ? (
               <FaEye className='icon' onClick={() => setToggle(!toggle)} />
@@ -101,6 +116,13 @@ function Login() {
             <Link to='/signup'>Register here</Link>
           </span>
         </p>
+        {err === '' ? (
+          ''
+        ) : (
+          <div className='alert'>
+            <p className='alert-text'>{err}</p>
+          </div>
+        )}
       </div>
     </div>
   )

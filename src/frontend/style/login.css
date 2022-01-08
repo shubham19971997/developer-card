@@ -82,6 +82,7 @@ input:focus {
   background-color: white;
   margin: auto;
   margin-top: 8px;
+  font-weight: 500;
 }
 span {
   background-color: white;
@@ -113,4 +114,15 @@ span:hover {
 .inner-input:focus {
   outline: none;
   border: none;
+}
+
+.alert{
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+.alert-text {
+  color: red;
+  font-weight: 530;
 }
