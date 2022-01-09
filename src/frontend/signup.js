@@ -52,7 +52,7 @@ function Signup() {
           <input
             className='input-signup'
             value={userName}
-            placeholder='Enter your Name'
+            placeholder='Enter your Good Name'
             onChange={(e) => setUserName(e.target.value)}
           />
           <label className='label-signup'>Email</label>
