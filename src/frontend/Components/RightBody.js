@@ -7,10 +7,14 @@ import { Link } from 'react-router-dom'
 function RightBody() {
   const cards = useSelector((state) => state.allCards.cards)
   const { _id } = cards
-  const renderSmallCards = cards.map((card) => {
-    const { name, email, skills, imagepath, aboutMe, _id } = card
-    return <SmallCard card={card} key={_id} />
-  })
+  let i = 0
+  const renderSmallCards = cards
+    .map((card) => {
+      const { _id } = card
+      i++
+      if (i < 6) return <SmallCard card={card} key={_id} />
+    })
+    .reverse()
   return (
     <div className='rb'>
       <div className='rb-body'>

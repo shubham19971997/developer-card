@@ -77,7 +77,7 @@ function Login() {
           <label className='label'>Email</label>
           <input
             name='email'
-            className='input'
+            className='input-Email'
             value={email}
             onChange={(e) => {
               setEmail(e.target.value)
@@ -86,7 +86,7 @@ function Login() {
             placeholder='Enter your email'
           />
           <label className='label'>Password</label>
-          <div className='input'>
+          <div className='input-password'>
             <input
               name='password'
               className='inner-input'

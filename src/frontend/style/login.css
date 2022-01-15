@@ -19,12 +19,12 @@
   margin: auto;
   margin-top: 0px;
   border-radius: 10px;
-  transition: .5s;
+  transition: 0.5s;
 }
 
-.container:hover{
+.container:hover {
   box-shadow: 10px 10px 5px rgb(73, 72, 72);
-  transform: scale(1.02)
+  transform: scale(1.02);
 }
 
 .logo {
@@ -40,12 +40,14 @@
   flex-direction: column;
   background-color: white;
 }
-.input {
+.input-Email {
   width: 200px;
   height: 30px;
   background-color: rgb(232, 240, 254);
+  font-weight: 550;
   margin: auto;
-  border-radius: 10px;
+  padding-left: 5px;
+  border-radius: 5px;
   border: 2px solid grey;
   transition: 0.77s;
 }
@@ -56,8 +58,9 @@ input:focus {
 
 .label {
   background-color: white;
-  margin-left: 100px;
+  margin-left: 93px;
   padding: 3px;
+  font-weight: 600;
 }
 
 .btn {
@@ -102,21 +105,29 @@ span:hover {
   padding-left: 5px;
   cursor: pointer;
 }
+.input-password{
+  width: 200px;
+  height: 30px;
+  background-color: rgb(232, 240, 254);
+  margin: auto;
+  border-radius: 5px;
+  border: 2px solid grey;
+  transition: 0.77s;
+}
 .inner-input {
   width: 170px;
   height: 25px;
   outline: none;
   border: none;
-  border-radius: 10px;
-  margin-left: 5px;
-  padding: 0;
+  border-radius: 5px;
+  padding-left: -5px;
 }
-.inner-input:focus {
+.inner-input:focus{
   outline: none;
-  border: none;
+  border: 2px solid rgb(65, 63, 63);
 }
 
-.alert{
+.alert {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;

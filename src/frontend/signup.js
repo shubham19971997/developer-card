@@ -4,6 +4,7 @@ import logo from './dc.png'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import axios from 'axios'
 import login from './login'
+import {Redirect} from 'react-router-dom';
 import { Link } from 'react-router-dom'
 
 function Signup() {
@@ -15,6 +16,8 @@ function Signup() {
   const [aboutMe, setAboutMe] = useState('')
   const [selectFile, setSelectFile] = useState('')
   const [submitButton, setSubmitButton] = useState(false)
+  const [msg,setMsg] = useState('')
+  const [login,setLogin] = useState(false);
 
   const uploadImage = (files) => {
     const formData = new FormData()
@@ -39,7 +42,16 @@ function Signup() {
       selectFile,
     }
     axios.post('http://localhost:9000/card/signup', postData).then((res) => {
-      console.log(res.data)
+      
+      setMsg("User Successfully Registered!")
+      setUserName('');
+      setEmail('');
+      setPassword('');
+      setSkills('');
+      setAboutMe('');
+      setTimeout(()=>setLogin(true),1000)
+    }).catch((err) => {
+      setMsg(err.response.data.error)
     })
   }
 
@@ -64,7 +76,7 @@ function Signup() {
             onChange={(e) => setEmail(e.target.value)}
           />
           <label className='label-signup'>Password</label>
-          <div className='input'>
+          <div className='input-password'>
             <input
               className='inner-input'
               placeholder='Enter your password'
@@ -116,7 +128,9 @@ function Signup() {
             </Link>
           </div>
         </form>
-      </div>
+        {msg===""?'':<a className={msg==="User Successfully Registered!"?"msg-success":"msg-err"}>{msg}</a>}
+        {login?<Redirect to="/login"/>:''}
+      </div>     
     </div>
   )
 }

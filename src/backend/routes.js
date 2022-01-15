@@ -57,10 +57,10 @@ router.post('/signup', async (req, res) => {
       imagepath: req.body.selectFile,
     })
     let user = await Card.findOne({ email: req.body.email })
-    if (user) return res.send('User Already Registered')
+    if (user) return res.status(400).send({error:'User Already Registered'})
 
     let userName = await Card.findOne({ name: req.body.userName })
-    if (userName) return res.send('Use Different Username')
+    if (userName) return res.status(400).send({error:'Use Different Username'})
 
     const a1 = await card.save()
     res.json({ a1 })

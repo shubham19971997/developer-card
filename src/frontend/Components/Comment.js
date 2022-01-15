@@ -20,12 +20,6 @@ function Comments(props) {
   const renderComment = comments.map((comment) => {
     if (index < checker) {
       index++
-      // if (comment.name === User.name) {
-      //   setDB(true)
-      // } else {
-      //   setDB(false)
-      // }
-      // return <CommentCard commentData={{comment,cardId}} key={comment._id} /> used it for separate component
       const deleteComment = () => {
         const deleteData = {
           cardId,
