@@ -32,6 +32,7 @@
     "react-spring": "^9.3.3",
     "react-transition-group": "^4.4.2",
     "redux": "^4.1.2",
+    "redux-persist": "^6.0.0",
     "swup": "^2.0.14",
     "uuid": "^8.3.2",
     "web-vitals": "^1.0.1"
