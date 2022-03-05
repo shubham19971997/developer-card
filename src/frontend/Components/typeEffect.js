@@ -11,7 +11,7 @@ function typeEffect({ name }) {
           autoStart: true,
           loop: true,
           pauseFor: 900,
-          delay: 140
+          delay: 200
         }}
       />
     </div>
