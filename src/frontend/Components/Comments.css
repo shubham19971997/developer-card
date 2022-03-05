@@ -34,6 +34,7 @@
   margin-top: 10px;
   margin-left: 20px;
   color: rgb(31, 31, 94);
+  cursor: pointer;
 }
 .comment {
   height: 150px;
@@ -121,5 +122,6 @@
   );
   color: white;
   padding: 2px;
+  cursor: pointer;
   /* background-color:  yellow; */
 }

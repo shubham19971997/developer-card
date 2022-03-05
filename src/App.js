@@ -3,7 +3,6 @@ import {
   Route,
   BrowserRouter as Router,
   Switch,
-  useLocation,
 } from 'react-router-dom'
 import login from './frontend/login'
 import signup from './frontend/signup'
@@ -14,12 +13,8 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import './App.css'
 
 function App() {
-  // const location = useLocation()
-  // console.log(location)
   return (
     <Router>
-      {/* <TransitionGroup>
-        <CSSTransition timeout={250} classNames='fade' key={location.key}> */}
           <Switch>
             <Route path='/home' component={HomePage} />
             <Route path='/about' component={About} />
@@ -27,14 +22,8 @@ function App() {
             <Route path='/card' component={MyCard} />
             <Route path='/' component={login} />
           </Switch>
-        {/* </CSSTransition>
-      </TransitionGroup> */}
     </Router>
   )
 }
 
 export default App
-
-// function handle(){
-//   axios.get("/card").then(res=>{console.log(res.data[0].name)})
-// }

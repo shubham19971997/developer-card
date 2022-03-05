@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import './LeftBody.css'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import TypeEffect from './typeEffect';
 
 function LeftBody() {
   const card = useSelector((state) => state.myCard)
@@ -32,22 +33,22 @@ function LeftBody() {
         </div>
         <div className='lb-bottom-content'>
           <div className='lb-bottom-content-h2'>
-            <h2># React.JS</h2>
+            <TypeEffect name="#React.js"/>
           </div>
           <div className='lb-bottom-content-h2'>
-            <h2># Node.JS</h2>
+          <TypeEffect name="#Node.js"/>
           </div>
           <div className='lb-bottom-content-h2'>
-            <h2># Angular.JS</h2>
+          <TypeEffect name="#Angular.js"/>
           </div>
           <div className='lb-bottom-content-h2'>
-            <h2># MongoDB</h2>
+          <TypeEffect name="#MongoDB"/>
           </div>
           <div className='lb-bottom-content-h2'>
-            <h2># Express.JS</h2>
+          <TypeEffect name="#Express.js"/>
           </div>
           <div className='lb-bottom-content-h2'>
-            <h2># React.JS</h2>
+          <TypeEffect name="#Git"/>
           </div>
         </div>
       </div>

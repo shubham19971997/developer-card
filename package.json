@@ -34,6 +34,7 @@
     "redux": "^4.1.2",
     "redux-persist": "^6.0.0",
     "swup": "^2.0.14",
+    "typewriter-effect": "^2.18.2",
     "uuid": "^8.3.2",
     "web-vitals": "^1.0.1"
   },

@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');
+.typewriter{
+    font-size: 23px;
+    font-weight: 700;
+    font-family: 'Raleway', sans-serif;
+    color: rgb(54, 54, 54);
+    max-height: 100px;
+    width: 80px;;
+    border-radius: 5px;
+}
